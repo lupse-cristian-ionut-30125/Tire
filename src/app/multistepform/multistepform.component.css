@@ -1,0 +1,80 @@
+.custom-input {
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  font-size: 16px;
+  width: 300px;
+  margin-right: 10px;
+}
+.multi-step-from {
+  background-color: white;
+  width: auto;
+  height: auto;
+  margin: 0 auto;
+  max-width: 1200px;
+  position: relative;
+  justify-content: center;
+  display: flex;
+  flex-wrap: wrap;
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  margin-bottom: 50px;
+  margin-left: 0;
+}
+.center-text {
+  text-align: center;
+}
+.image-input {
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  font-size: 16px;
+  width: 300px;
+  margin-right: 10px;
+  margin-top: 10px;
+}
+.webcam {
+  margin-left: 0;
+}
+.btn {
+  background-color: #fcdf00;
+  padding: 10px;
+  margin-bottom: 30px;
+}
+.btn-camera {
+  width: 100px;
+  margin-top: 10px;
+}
+.btn:hover {
+  background-color: #ccc;
+  border-radius: 10px;
+  transition: background-color 1s, border-radius 1s;
+}
+
+.btn-navi {
+  display: flex;
+  justify-content: center;
+  width: 100px;
+  margin-top: 10px;
+  margin-bottom: 50px;
+}
+.btn.btn-navi {
+  margin-left: auto;
+  margin-right: auto;
+}
+@media (max-width: 768px) {
+  .webcam {
+    width: 50%;
+  }
+}
+
+@media (max-width: 480px) {
+  .webcam {
+    width: 300px;
+  }
+}
+.btn-group {
+  display: flex;
+  justify-content: center;
+}

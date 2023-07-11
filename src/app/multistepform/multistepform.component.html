@@ -1,0 +1,401 @@
+<div class="multi-step-form">
+  <div *ngIf="currentStep === 1">
+    <h1 class="center-text">Numar de inmatriculare</h1>
+    <div class="center-text">
+      <input
+        class="custom-input"
+        [(ngModel)]="formData.NumarInmatriculare"
+        type="text"
+        placeholder="Introdu numarul de inmatriculare"
+      />
+    </div>
+    <div class="center-text">
+      <input
+        type="file"
+        (change)="handleFileInput($event, 1)"
+        accept="image/*"
+        capture="environment"
+        class="image-input"
+        *ngIf="!showCamera"
+        name="URLNumarInmatriculare"
+        ngModel
+      />
+    </div>
+    <div class="center-text">
+      <button
+        class="btn btn-camera"
+        (click)="toggleCamera()"
+        *ngIf="!showCamera"
+        [disabled]="isImageCaptured"
+      >
+        <i class="fa fa-camera"></i>
+      </button>
+    </div>
+    <div class="center-text">
+      <button class="btn btn-camera" (click)="closeCamera()" *ngIf="showCamera">
+        <i class="fa fa-times"></i>
+      </button>
+    </div>
+    <div class="camera-container">
+      <ng-container
+        *ngIf="!isImageCaptured && !showCapturedImage1 && showCamera"
+      >
+        <webcam
+          [trigger]="invokeObservable1"
+          (imageCapture)="captureImg($event, 1, 'URLNumarInmatriculare')"
+          [width]="imgWidht"
+          [height]="imgHeight"
+          [imageQuality]="imgQuality"
+          *ngIf="showCamera"
+        ></webcam>
+        <div class="btn-group">
+          <button class="btn btn-camera" (click)="getSnapshot(1)" type="button">
+            <i class="fa fa-circle"></i>
+          </button>
+        </div>
+      </ng-container>
+      <ng-container *ngIf="showCapturedImage1">
+        <img
+          [src]="capturedImage1"
+          [style.width.px]="imgWidht"
+          [style.height.px]="imgHeight"
+          *ngIf="isImageCaptured"
+          alt="capturedImage"
+        />
+      </ng-container>
+      <div class="btn-group">
+        <button
+          class="btn btn-camera"
+          (click)="resetImage()"
+          *ngIf="isImageCaptured"
+        >
+          Refă poza
+        </button>
+      </div>
+      <div class="btn-group">
+        <button class="btn btn-navi" (click)="goToNextStep()">Next</button>
+      </div>
+    </div>
+  </div>
+
+  <!---->
+  <div *ngIf="currentStep === 2">
+    <h1 class="center-text">Numar de km</h1>
+    <div class="center-text">
+      <input
+        class="custom-input"
+        [(ngModel)]="formData.Kilometrii"
+        type="text"
+        placeholder="Introdu numarul de kilometrii"
+      />
+    </div>
+    <div class="center-text">
+      <input
+        type="file"
+        (change)="handleFileInput($event, 2)"
+        accept="image/*"
+        capture="environment"
+        class="image-input"
+        *ngIf="!showCamera"
+        name="URLKilometrii"
+        ngModel
+      />
+    </div>
+    <div class="center-text">
+      <button
+        class="btn btn-camera"
+        (click)="toggleCamera()"
+        *ngIf="!showCamera"
+        [disabled]="isImageCaptured"
+      >
+        <i class="fa fa-camera"></i>
+      </button>
+    </div>
+    <div class="center-text">
+      <button class="btn btn-camera" (click)="closeCamera()" *ngIf="showCamera">
+        <i class="fa fa-times"></i>
+      </button>
+    </div>
+    <div class="camera-container">
+      <ng-container
+        *ngIf="!isImageCaptured && !showCapturedImage2 && showCamera"
+      >
+        <webcam
+          [trigger]="invokeObservable2"
+          (imageCapture)="captureImg($event, 2, 'URLKilometrii')"
+          [width]="imgWidht"
+          [height]="imgHeight"
+          [imageQuality]="imgQuality"
+          *ngIf="showCamera"
+        ></webcam>
+        <div class="btn-group">
+          <button class="btn btn-camera" (click)="getSnapshot(2)" type="button">
+            <i class="fa fa-circle"></i>
+          </button>
+        </div>
+      </ng-container>
+      <ng-container *ngIf="showCapturedImage2">
+        <img
+          [src]="capturedImage2"
+          [style.width.px]="imgWidht"
+          [style.height.px]="imgHeight"
+          *ngIf="isImageCaptured"
+          alt="capturedImage"
+        />
+      </ng-container>
+      <div class="btn-group">
+        <button
+          class="btn btn-camera"
+          (click)="resetImage()"
+          *ngIf="isImageCaptured"
+        >
+          Refă poza
+        </button>
+      </div>
+      <div class="btn-group">
+        <button class="btn btn-navi" (click)="goToPreviousStep()">back</button>
+        <button class="btn btn-navi" (click)="goToNextStep()">Next</button>
+      </div>
+    </div>
+  </div>
+  <!---->
+  <div *ngIf="currentStep === 3">
+    <h1 class="center-text">Masuratoare1</h1>
+    <div class="center-text">
+      <input
+        class="custom-input"
+        [(ngModel)]="formData.ProfilInterior"
+        type="text"
+        placeholder="Introdu masuratoare1"
+      />
+    </div>
+    <div class="center-text">
+      <input
+        type="file"
+        (change)="handleFileInput($event, 3)"
+        accept="image/*"
+        capture="environment"
+        class="image-input"
+        *ngIf="!showCamera"
+        name="URLProfilInterior"
+        ngModel
+      />
+    </div>
+    <div class="center-text">
+      <button
+        class="btn btn-camera"
+        (click)="toggleCamera()"
+        *ngIf="!showCamera"
+        [disabled]="isImageCaptured"
+      >
+        <i class="fa fa-camera"></i>
+      </button>
+    </div>
+    <div class="center-text">
+      <button class="btn btn-camera" (click)="closeCamera()" *ngIf="showCamera">
+        <i class="fa fa-times"></i>
+      </button>
+    </div>
+    <div class="camera-container">
+      <ng-container
+        *ngIf="!isImageCaptured && !showCapturedImage3 && showCamera"
+      >
+        <webcam
+          [trigger]="invokeObservable3"
+          (imageCapture)="captureImg($event, 3, 'URLProfilInterior')"
+          [width]="imgWidht"
+          [height]="imgHeight"
+          [imageQuality]="imgQuality"
+          *ngIf="showCamera"
+        ></webcam>
+        <div class="btn-group">
+          <button class="btn btn-camera" (click)="getSnapshot(3)" type="button">
+            <i class="fa fa-circle"></i>
+          </button></div
+      ></ng-container>
+      <ng-container *ngIf="showCapturedImage3">
+        <img
+          [src]="capturedImage3"
+          [style.width.px]="imgWidht"
+          [style.height.px]="imgHeight"
+          *ngIf="isImageCaptured"
+          alt="capturedImage"
+        />
+      </ng-container>
+      <div class="btn-group">
+        <button
+          class="btn btn-camera"
+          (click)="resetImage()"
+          *ngIf="isImageCaptured"
+        >
+          Refă poza
+        </button>
+      </div>
+      <div class="btn-group">
+        <button class="btn btn-navi" (click)="goToPreviousStep()">back</button>
+        <button class="btn btn-navi" (click)="goToNextStep()">Next</button>
+      </div>
+    </div>
+  </div>
+
+  <!---->
+  <div *ngIf="currentStep === 4">
+    <h1 class="center-text">Masuratoare2</h1>
+    <div class="center-text">
+      <input
+        class="custom-input"
+        [(ngModel)]="formData.ProfilMijloc"
+        type="text"
+        placeholder="Introdu mijloc"
+      />
+    </div>
+    <div class="center-text">
+      <input
+        type="file"
+        (change)="handleFileInput($event, 4)"
+        accept="image/*"
+        capture="environment"
+        class="image-input"
+        *ngIf="!showCamera"
+        name="URLProfilMijloc"
+        ngModel
+      />
+    </div>
+    <div class="center-text">
+      <button
+        class="btn btn-camera"
+        (click)="toggleCamera()"
+        *ngIf="!showCamera"
+        [disabled]="isImageCaptured"
+      >
+        <i class="fa fa-camera"></i>
+      </button>
+    </div>
+    <div class="center-text">
+      <button class="btn btn-camera" (click)="closeCamera()" *ngIf="showCamera">
+        <i class="fa fa-times"></i>
+      </button>
+    </div>
+    <div class="camera-container">
+      <ng-container
+        *ngIf="!isImageCaptured && !showCapturedImage4 && showCamera"
+      >
+        <webcam
+          [trigger]="invokeObservable4"
+          (imageCapture)="captureImg($event, 4, 'URLProfilMijloc')"
+          [width]="imgWidht"
+          [height]="imgHeight"
+          [imageQuality]="imgQuality"
+          *ngIf="showCamera"
+        ></webcam>
+        <div class="btn-group">
+          <button class="btn btn-camera" (click)="getSnapshot(4)" type="button">
+            <i class="fa fa-circle"></i>
+          </button>
+        </div>
+      </ng-container>
+      <ng-container *ngIf="showCapturedImage4">
+        <img
+          [src]="capturedImage4"
+          [style.width.px]="imgWidht"
+          [style.height.px]="imgHeight"
+          *ngIf="isImageCaptured"
+          alt="capturedImage"
+        />
+      </ng-container>
+      <div class="btn-group">
+        <button
+          class="btn btn-camera"
+          (click)="resetImage()"
+          *ngIf="isImageCaptured"
+        >
+          Refă poza
+        </button>
+      </div>
+      <div class="btn-group">
+        <button class="btn btn-navi" (click)="goToPreviousStep()">back</button>
+        <button class="btn btn-navi" (click)="goToNextStep()">Next</button>
+      </div>
+    </div>
+  </div>
+  <!---->
+  <div *ngIf="currentStep === 5">
+    <h1 class="center-text">Masuratoare3</h1>
+    <div class="center-text">
+      <input
+        class="custom-input"
+        [(ngModel)]="formData.ProfilExterior"
+        type="text"
+        placeholder="Introdu exterior"
+      />
+    </div>
+    <div class="center-text">
+      <input
+        type="file"
+        (change)="handleFileInput($event, 5)"
+        accept="image/*"
+        capture="environment"
+        class="image-input"
+        *ngIf="!showCamera"
+        name="URLProfilExterior"
+        ngModel
+      />
+    </div>
+    <div class="center-text">
+      <button
+        class="btn btn-camera"
+        (click)="toggleCamera()"
+        *ngIf="!showCamera"
+        [disabled]="isImageCaptured"
+      >
+        <i class="fa fa-camera"></i>
+      </button>
+    </div>
+    <div class="center-text">
+      <button class="btn btn-camera" (click)="closeCamera()" *ngIf="showCamera">
+        <i class="fa fa-times"></i>
+      </button>
+    </div>
+    <div class="camera-container">
+      <ng-container
+        *ngIf="!isImageCaptured && !showCapturedImage5 && showCamera"
+      >
+        <webcam
+          [trigger]="invokeObservable5"
+          (imageCapture)="captureImg($event, 5, 'URLProfilExterior')"
+          [width]="imgWidht"
+          [height]="imgHeight"
+          [imageQuality]="imgQuality"
+          *ngIf="showCamera"
+        ></webcam>
+        <div class="btn-group">
+          <button class="btn btn-camera" (click)="getSnapshot(5)" type="button">
+            <i class="fa fa-circle"></i>
+          </button>
+        </div>
+      </ng-container>
+      <ng-container *ngIf="showCapturedImage5">
+        <img
+          [src]="capturedImage5"
+          [style.width.px]="imgWidht"
+          [style.height.px]="imgHeight"
+          *ngIf="isImageCaptured"
+          alt="capturedImage"
+        />
+      </ng-container>
+      <div class="btn-group">
+        <button
+          class="btn btn-camera"
+          (click)="resetImage()"
+          *ngIf="isImageCaptured"
+        >
+          Refă poza
+        </button>
+      </div>
+      <div class="btn-group">
+        <button class="btn btn-navi" (click)="goToPreviousStep()">back</button>
+        <button class="btn btn-navi" (click)="submit()">Submit</button>
+      </div>
+    </div>
+  </div>
+</div>
